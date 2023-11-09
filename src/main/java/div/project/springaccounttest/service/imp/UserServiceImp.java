@@ -7,12 +7,17 @@ import div.project.springaccounttest.dao.UserRepository;
 import div.project.springaccounttest.dao.UserRoleRepository;
 import div.project.springaccounttest.dto.request.LoginRequest;
 import div.project.springaccounttest.dto.request.SignUpRequest;
+import div.project.springaccounttest.dto.request.UserQueryRequest;
 import div.project.springaccounttest.dto.response.UserProfile;
 import div.project.springaccounttest.service.UserService;
 import div.project.springaccounttest.service.imp.auth.UserDetailsImp;
 import div.project.springaccounttest.utils.UserJwtUtil;
 import div.project.springaccounttest.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -53,6 +58,8 @@ public class UserServiceImp  implements UserService {
         user.setUserAccount(signUpRequest.getUserAccount());
         user.setPassword(bCryptPasswordEncoder.encode(signUpRequest.getPassword()));
         user.setStatus(1);//預設為存活
+        Date now =new Date();
+        user.setCreatedDate(now);
         userRepository.save(user);
         userRoleRepository.insertUserRole(user.getUserId(),"會員");//機本權限
         return "註冊成功";
@@ -87,5 +94,24 @@ public class UserServiceImp  implements UserService {
         user.getRoles().forEach(data-> roleList.add(data.getRoleName()));
         userProfile.setRoleList(roleList);
         return userProfile;
+    }
+
+    @Override
+    public List<User> getUser(UserQueryRequest userQueryRequest) {
+        Sort sort =null ;//設定排序方式
+        switch (userQueryRequest.getSort()){
+            case asc:
+                sort = Sort.by(Sort.Order.asc(userQueryRequest.getOrder().name()));
+                break;
+            case desc:
+                sort = Sort.by(Sort.Order.desc(userQueryRequest.getOrder().name()));
+                break;
+        }
+        //創建Pageable   頁碼從0開始
+        Pageable pageable = PageRequest.of(userQueryRequest.getPage()-1, userQueryRequest.getSize(), sort);
+        //執行查詢返回 Page
+        Page userPage = userRepository.findUser(userQueryRequest.getSearch(), pageable);
+        List<User> userList=userPage.getContent();
+        return userList;
     }
 }

@@ -1,11 +1,12 @@
 package div.project.springaccounttest.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
 import  java.util.*;
-
+import java.util.Date;
 @Entity
 @Table(name = "User")
 @Data
@@ -19,6 +20,9 @@ public class User {
     @JsonIgnore
     private  String password;
     private  Integer status;
+    @Column(name = "created_Date")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm",timezone = "Asia/Taipei")
+    private Date createdDate;
     @ManyToMany
     @JoinTable(
             joinColumns = @JoinColumn(
