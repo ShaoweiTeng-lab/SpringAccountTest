@@ -54,19 +54,19 @@ public class UserJwtFilter extends OncePerRequestFilter {
         //取得sub
         userId = claims.getSubject();
         //拿回 redis 儲存的 已經認證的principal
-        String managerLoginJson = redisTemplate.opsForValue().get("User:Login:" + userId);
-        if (managerLoginJson == null) {
+        String userLoginJson = redisTemplate.opsForValue().get("User:Login:" + userId);
+        if (userLoginJson == null) {
             //被最高管理員修改後 會須重新登入
             filterChain.doFilter(request, response);
             return;
         }
         UserDetailsImp userDetail = null;
-        userDetail = objectMapper.readValue(managerLoginJson, UserDetailsImp.class);
-//        if(userDetail.getManager().getManagerState()==0){
-//            //被停權
-//            filterChain.doFilter(request,response);
-//            return;
-//        }
+        userDetail = objectMapper.readValue(userLoginJson, UserDetailsImp.class);
+        if(userDetail.getUser().getStatus()==0){
+            //被停權
+            filterChain.doFilter(request,response);
+            return;
+        }
         //認證成功 傳入 SecurityContext  到當前SecurityContextHolder
         UsernamePasswordAuthenticationToken managerAuthentication = new UsernamePasswordAuthenticationToken(userDetail, null, userDetail.getAuthorities());
         //傳入此次請求的安全上下文

@@ -5,8 +5,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import div.project.springaccounttest.dao.UserRepository;
 import div.project.springaccounttest.dao.UserRoleRepository;
-import div.project.springaccounttest.dto.LoginRequest;
-import div.project.springaccounttest.dto.SignUpRequest;
+import div.project.springaccounttest.dto.request.LoginRequest;
+import div.project.springaccounttest.dto.request.SignUpRequest;
+import div.project.springaccounttest.dto.response.UserProfile;
 import div.project.springaccounttest.service.UserService;
 import div.project.springaccounttest.service.imp.auth.UserDetailsImp;
 import div.project.springaccounttest.utils.UserJwtUtil;
@@ -17,13 +18,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.*;
 
 @Service
 public class UserServiceImp  implements UserService {
@@ -71,5 +73,19 @@ public class UserServiceImp  implements UserService {
         redisTemplate.opsForValue().set("User:Login:"+userDetailsImp.getUser().getUserId(),userDetailJson);
         String jwt= userJwtUtil.createJwt(userId);
         return  jwt;
+    }
+
+    @Override
+    public UserProfile getUserProfile(Integer userId) {
+        User  user  = userRepository.findById(userId).orElse(null);
+        if(user==null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"無此使使用者");
+        UserProfile userProfile =new UserProfile();
+        userProfile.setAccount(user.getUserAccount());
+        userProfile.setStatus(user.getStatus());
+        List<String> roleList =new ArrayList<>();
+        user.getRoles().forEach(data-> roleList.add(data.getRoleName()));
+        userProfile.setRoleList(roleList);
+        return userProfile;
     }
 }

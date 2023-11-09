@@ -1,5 +1,6 @@
 package div.project.springaccounttest.vo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -15,8 +16,20 @@ public class User {
     private  Integer userId;
     @Column(name = "user_Account")
     private  String userAccount;
+    @JsonIgnore
     private  String password;
     private  Integer status;
-//    @OneToMan
-//    private  List<Role> roles;
+    @ManyToMany
+    @JoinTable(
+            joinColumns = @JoinColumn(
+                    referencedColumnName = "user_Id",
+                    name = "user_Id"
+            ),
+            name = "user_role",
+            inverseJoinColumns = @JoinColumn(
+                    name="role_id",
+                    referencedColumnName = "role_id"
+            )
+    )
+    private  List<Role> roles;
 }
