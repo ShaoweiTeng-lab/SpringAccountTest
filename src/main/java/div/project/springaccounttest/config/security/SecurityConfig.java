@@ -1,6 +1,7 @@
 package div.project.springaccounttest.config.security;
 
-import div.project.springaccounttest.filter.UserJWTFilter;
+
+import div.project.springaccounttest.filter.UserJwtFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +26,7 @@ public class SecurityConfig   extends WebSecurityConfigurerAdapter {
     @Autowired
     private AccessDeniedHandler accessDeniedHandler;
     @Autowired
-    private UserJWTFilter userJWTFilter;
+    private UserJwtFilter userJwtFilter;
     @Bean
     public PasswordEncoder bCryptPasswordEncoder(){
 
@@ -47,7 +48,7 @@ public class SecurityConfig   extends WebSecurityConfigurerAdapter {
                 .antMatchers("/swagger-resources").permitAll()
                 .antMatchers("/v2/api-docs").permitAll()
                 .anyRequest().authenticated();
-        http.addFilterBefore(userJWTFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(userJwtFilter, UsernamePasswordAuthenticationFilter.class);
         //配置異常處理
         http.exceptionHandling()
                 .authenticationEntryPoint(authenticationEntryPoint)
