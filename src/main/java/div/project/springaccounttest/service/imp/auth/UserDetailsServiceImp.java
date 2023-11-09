@@ -1,4 +1,4 @@
-package div.project.springaccounttest.service.auth;
+package div.project.springaccounttest.service.imp.auth;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

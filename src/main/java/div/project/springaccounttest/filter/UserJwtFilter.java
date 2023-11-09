@@ -2,7 +2,7 @@ package div.project.springaccounttest.filter;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import div.project.springaccounttest.service.auth.UserDetailsImp;
+import div.project.springaccounttest.service.imp.auth.UserDetailsImp;
 import div.project.springaccounttest.utils.UserJwtUtil;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;

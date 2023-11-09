@@ -1,4 +1,4 @@
-package div.project.springaccounttest.service.auth;
+package div.project.springaccounttest.service.imp.auth;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
