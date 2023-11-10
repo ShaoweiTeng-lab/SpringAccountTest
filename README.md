@@ -101,6 +101,17 @@ java -jar backend.jar
 * 登入管理員 拿到token :
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/6c29616e-e7b8-4682-9d2c-53baafb14458)
 
+* 管理員查詢會員(關鍵字查詢、分頁查詢) :
+   1. 在 header 中帶入 token
+     ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/84ef5806-db3e-4997-9776-37e8f507c5b3)
+  2. 取得會員資訊
+      * 可帶參數 : search (帳戶名稱，使用模糊查詢) 、page(頁數)、 order(排序類別) 、 size(回傳筆數) 、sort (降冪、 升冪 )
+
+     ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/78a0dd1e-19e8-4822-9d2b-310aaefb56e1)
+ 
+      
+
+
 * 管理員修改帳戶狀態(修改功能):  
   1. 在 header 中帶入 token
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/95334ba2-3927-4a37-9db8-5e4bdf6d4e3a)
@@ -113,6 +124,7 @@ java -jar backend.jar
     2. 刪除會員
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/30f7a493-95c0-4322-bd5d-eb7691a8b478)
 
+     ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/a711a636-b91e-4ea9-a516-6c3626333908)
 
 
 <!-- Markdown link & img dfn's -->
