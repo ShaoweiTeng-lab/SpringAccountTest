@@ -26,7 +26,12 @@
 ### * Swagger
 
 ## 安裝方式:
-   若有Docker 可參考 Docker版連結:https://github.com/ShaoweiTeng-lab/SpringAccountTest-Docker
+   * 若有Docker 可參考 Docker版(以下可省略):https://github.com/ShaoweiTeng-lab/SpringAccountTest-Docker
+
+
+
+
+   1.Import sql :請至 Resources/sql 找到sql 並使用 mysql 匯入
 
 
 
