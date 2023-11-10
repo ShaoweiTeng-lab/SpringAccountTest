@@ -62,7 +62,8 @@ java -jar backend.jar
 
 
 ### 測試方式:
-<h3>Local測試網址: http://localhost:8080/doc.html#/home  </h3>
+ * Local測試網址: http://localhost:8080/doc.html#/home
+ 
 
 
 <!-- Markdown link & img dfn's -->
