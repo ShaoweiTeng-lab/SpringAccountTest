@@ -108,7 +108,7 @@ java -jar backend.jar
 * <h2>登入管理員 拿到token : </h2>
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/6c29616e-e7b8-4682-9d2c-53baafb14458)
 
-* 管理員查詢會員(關鍵字查詢、分頁查詢) :
+* <h2>管理員查詢會員(關鍵字查詢、分頁查詢) : </h2> 
    1. <h3> 在 header 中帶入 token</h3>
       
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/84ef5806-db3e-4997-9776-37e8f507c5b3)
