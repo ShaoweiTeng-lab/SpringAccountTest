@@ -62,31 +62,33 @@ java -jar backend.jar
 
 
 ### 測試方式:
- * Local測試網址: http://localhost:8080/doc.html#/home
+ * <h2> Local測試網址: http://localhost:8080/doc.html#/home </h2>
  
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/132072cf-956a-4996-bf05-265aa990af3e)
 
-### 資料庫預設資料 (帳號密碼相同，使用 bcryptPasswordEncoder 加密)
+### <h2> 資料庫預設資料 (帳號密碼相同，使用 bcryptPasswordEncoder 加密) </h2>
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/84e86841-940a-4584-a3e6-9f1c2e28b17f)
 
 
 ## 功能展示(會員):
 
-* 註冊會員 (新增功能) :
+* <h2> 註冊會員 (新增功能) : </h2>
   
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/0ebed0d9-03c3-4a1f-b9f8-f47d56cd4582)
 
-* 登入會員 拿到token :
+* <h2> 登入會員 拿到token :</h2>
 
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/eb29d7cc-fb67-49f7-bc13-e07210050728)
 
 
-* 查詢此帳戶資訊 (單筆查詢):
+* <h2> 查詢此帳戶資訊 (單筆查詢):</h2>
+
   1. 在 header 中帶入 token
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/1d4313b2-9721-4542-8368-e892a27574ca)
   2. 取得此帳戶資訊
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/0df8a664-3139-4411-948d-387c196bfe48)
-* 會員修改密碼 (修改功能):
+* <h2>會員修改密碼 (修改功能):</h2>
+
   1. 在 header 中帶入 token
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/4d70d448-17d6-4432-bb4b-3c03fb88688f)
   2. 在RequestBody 設定密碼
@@ -98,13 +100,14 @@ java -jar backend.jar
 
 
 ## 功能展示(管理員):
-* 登入管理員 拿到token :
+* <h2>登入管理員 拿到token : </h2>
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/6c29616e-e7b8-4682-9d2c-53baafb14458)
 
 * 管理員查詢會員(關鍵字查詢、分頁查詢) :
-   1. 在 header 中帶入 token
+   1. <h2> 在 header 中帶入 token</h2>
+      
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/84ef5806-db3e-4997-9776-37e8f507c5b3)
-  2. 取得會員資訊
+   2. <h2> 取得會員資訊</h2>
       * 可帶參數 : search (帳戶名稱，使用模糊查詢) 、page(頁數)、 order(排序類別) 、 size(回傳筆數) 、sort (降冪、 升冪 )
 
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/78a0dd1e-19e8-4822-9d2b-310aaefb56e1)
