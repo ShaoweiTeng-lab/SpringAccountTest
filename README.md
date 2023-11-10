@@ -164,3 +164,7 @@ java -jar backend.jar
 [travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
 [travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
 [wiki]: https://github.com/yourname/yourproject/wiki
+
+<h1>My Skills</h1>
+
+[![My Skills](https://skillicons.dev/icons?i=java,spring,css,html,redis,mysql,maven,hibernate,js&theme=light)](https://skillicons.dev)
