@@ -1,6 +1,5 @@
 # SpringAccountTest
-[![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
+ 
 
 ## 專題說明:
 <H2>奧爾資訊 面試前測驗</H2>
