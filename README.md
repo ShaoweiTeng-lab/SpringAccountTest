@@ -132,6 +132,12 @@ java -jar backend.jar
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/548f77ab-18db-4855-b48e-25c364e5b72c)
 * 會員使用token 呼叫管理員專用 api
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/f70b37cd-7306-4f6e-a47d-9b6573191000)
+* 管理員刪除管理員
+![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/d497a7aa-3d35-42a8-bc5d-eac2173a5e33)
+* 更改管理員帳號狀態
+![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/807e39d6-8c83-451e-ac82-75ba6d8a074f)
+
+
 
 <!-- Markdown link & img dfn's -->
 [npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
