@@ -125,7 +125,13 @@ java -jar backend.jar
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/30f7a493-95c0-4322-bd5d-eb7691a8b478)
 
      
-
+## 異常處理
+* 無此帳戶
+![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/d0d8ffe1-ee50-4c1a-a286-759da64eaefe)
+* 帳戶停權後 登入
+![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/548f77ab-18db-4855-b48e-25c364e5b72c)
+* 會員使用token 呼叫管理員專用 api
+![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/f70b37cd-7306-4f6e-a47d-9b6573191000)
 
 <!-- Markdown link & img dfn's -->
 [npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
