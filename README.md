@@ -101,12 +101,18 @@ java -jar backend.jar
 * 登入管理員 拿到token :
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/6c29616e-e7b8-4682-9d2c-53baafb14458)
 
-* 會員修改密碼 (修改功能):  
+* 管理員修改帳戶狀態(修改功能):  
   1. 在 header 中帶入 token
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/95334ba2-3927-4a37-9db8-5e4bdf6d4e3a)
      
   2.設定狀態為停權/開啟
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/8cda36b3-076a-4d5f-a639-974446a3f438)
+* 管理員刪除帳戶(刪除功能):
+    1. 在 header 中帶入 token
+     ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/ababb7b9-568a-474f-8342-8b381dad3c7c)
+    2. 刪除會員
+     ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/30f7a493-95c0-4322-bd5d-eb7691a8b478)
+
 
 
 <!-- Markdown link & img dfn's -->
