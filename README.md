@@ -113,12 +113,16 @@ java -jar backend.jar
 
 
 * 管理員修改帳戶狀態(修改功能):  
-  1. 在 header 中帶入 token
+  1. <h2>在 header 中帶入 token</h2>
+  
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/95334ba2-3927-4a37-9db8-5e4bdf6d4e3a)
      
-  2.設定狀態為停權/開啟
+  2. <h2>設定狀態為停權/開啟</h2>
+  
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/8cda36b3-076a-4d5f-a639-974446a3f438)
-* 管理員刪除帳戶(刪除功能):
+     
+* <h2>管理員刪除帳戶(刪除功能):</h2>
+
     1. 在 header 中帶入 token
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/ababb7b9-568a-474f-8342-8b381dad3c7c)
     2. 刪除會員
@@ -126,15 +130,18 @@ java -jar backend.jar
 
      
 ## 異常處理
-* 無此帳戶
+* <h2>密碼錯誤</h2>
+![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/4eaa81d4-5d50-4951-bff2-53122a205284)
+
+* <h2>無此帳戶</h2>
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/d0d8ffe1-ee50-4c1a-a286-759da64eaefe)
-* 帳戶停權後 登入
+* <h2>帳戶停權後 登入</h2>
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/548f77ab-18db-4855-b48e-25c364e5b72c)
-* 會員使用token 呼叫管理員專用 api
+* <h2>會員使用token 呼叫管理員專用 api</h2>
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/f70b37cd-7306-4f6e-a47d-9b6573191000)
-* 管理員刪除管理員
+* <h2>管理員刪除管理員</h2>
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/d497a7aa-3d35-42a8-bc5d-eac2173a5e33)
-* 更改管理員帳號狀態
+* <h2>更改管理員帳號狀態</h2>
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/807e39d6-8c83-451e-ac82-75ba6d8a074f)
 
 
