@@ -112,6 +112,7 @@ java -jar backend.jar
    1. <h3> 在 header 中帶入 token</h3>
       
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/84ef5806-db3e-4997-9776-37e8f507c5b3)
+  
    2. <h3> 取得會員資訊</h3>
       * 可帶參數 : search (帳戶名稱，使用模糊查詢) 、page(頁數)、 order(排序類別) 、 size(回傳筆數) 、sort (降冪、 升冪 )
 
@@ -120,21 +121,21 @@ java -jar backend.jar
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/a711a636-b91e-4ea9-a516-6c3626333908)
 
 
-* 管理員修改帳戶狀態(修改功能):  
-  1.<h3>在 header 中帶入 token</h3>
+*  <h2> 管理員修改帳戶狀態(修改功能): </h2>  
+  1. <h3> 在 header 中帶入 token</h3>
   
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/95334ba2-3927-4a37-9db8-5e4bdf6d4e3a)
      
-  2.<h3>設定狀態為停權/開啟</h3>
+  2. <h3> 設定帳戶狀態為 : 開啟/停權</h3>
   
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/8cda36b3-076a-4d5f-a639-974446a3f438)
      
 * <h3> 管理員刪除帳戶(刪除功能):</h3>
 
-    1. <h3>在 header 中帶入 token</h3>
+    1. <h3> 在 header 中帶入 token</h3>
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/ababb7b9-568a-474f-8342-8b381dad3c7c)
   
-    2.<h3>刪除會員</h3>
+    2. <h3> 刪除會員資訊</h3>
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/30f7a493-95c0-4322-bd5d-eb7691a8b478)
 
      
