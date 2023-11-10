@@ -5,10 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import div.project.springaccounttest.dao.UserRepository;
 import div.project.springaccounttest.dao.UserRoleRepository;
-import div.project.springaccounttest.dto.request.AdjustPasswordRequest;
-import div.project.springaccounttest.dto.request.LoginRequest;
-import div.project.springaccounttest.dto.request.SignUpRequest;
-import div.project.springaccounttest.dto.request.UserQueryRequest;
+import div.project.springaccounttest.dto.request.*;
 import div.project.springaccounttest.dto.response.UserProfile;
 import div.project.springaccounttest.service.UserService;
 import div.project.springaccounttest.service.imp.auth.UserDetailsImp;
@@ -138,6 +135,21 @@ public class UserServiceImp  implements UserService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"無此使用者");
         user.setPassword(bCryptPasswordEncoder.encode(adjustPasswordRequest.getPassword()));
         userRepository.save(user);
+        return "修改成功";
+    }
+
+    @Override
+    public String adjustUserStatus(AdjustUserStatusRequest adjustProfileRequest) {
+        User user = userRepository.findById(adjustProfileRequest.getUserId()).orElse(null);
+        if(user==null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"無此使用者");
+        user.getRoles().forEach(role->{
+            if(role.getRoleName().equals("管理員"))
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"不可更改管理員權限");
+        });
+        user.setStatus(adjustProfileRequest.getStatus());
+        userRepository.save(user);
+        redisTemplate.delete("User:Login:"+user.getUserId());//帳號被修改後須重新登入
         return "修改成功";
     }
 }

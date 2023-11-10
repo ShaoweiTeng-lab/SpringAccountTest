@@ -1,10 +1,7 @@
 package div.project.springaccounttest.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import div.project.springaccounttest.dto.request.AdjustPasswordRequest;
-import div.project.springaccounttest.dto.request.LoginRequest;
-import div.project.springaccounttest.dto.request.SignUpRequest;
-import div.project.springaccounttest.dto.request.UserQueryRequest;
+import div.project.springaccounttest.dto.request.*;
 import div.project.springaccounttest.dto.response.UserProfile;
 import div.project.springaccounttest.service.UserService;
 import div.project.springaccounttest.utils.ResultResponse;
@@ -31,14 +28,14 @@ public class UserController {
     private UserService userService;
     @PostMapping("/signUp")
     @ApiOperation("會員註冊")
-    public ResultResponse signUp(@RequestBody @Valid SignUpRequest signUpRequest){
+    public ResultResponse<String> signUp(@RequestBody @Valid SignUpRequest signUpRequest){
         ResultResponse rs =new ResultResponse();
         rs.setMessage(userService.signUp(signUpRequest));
         return  rs;
     }
     @PostMapping("/login")
     @ApiOperation("會員登入")
-    public  ResultResponse userLogin(@RequestBody @Valid LoginRequest loginRequest) throws JsonProcessingException {
+    public  ResultResponse<String> userLogin(@RequestBody @Valid LoginRequest loginRequest) throws JsonProcessingException {
         ResultResponse rs =new ResultResponse();
         rs.setMessage(userService.login(loginRequest));
         return  rs;
@@ -84,6 +81,20 @@ public class UserController {
         return  rs;
     }
 
+    /**
+     * 修改帳號停權/開啟
+     * */
+    @ApiOperation("管理員修改會員帳號狀態")
+    @PutMapping()
+    @PreAuthorize("hasAnyAuthority('管理員')")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Access Token", required = true, dataType = "string", paramType = "header")
+    })
+    public  ResultResponse<String> adjustUserStatus(@RequestBody @Valid AdjustUserStatusRequest adjustProfileRequest)  {
+        ResultResponse rs =new ResultResponse();
+        rs.setMessage(userService.adjustUserStatus(adjustProfileRequest));
+        return  rs;
+    }
 
     /**
      * 最高管理員才可刪除會員
