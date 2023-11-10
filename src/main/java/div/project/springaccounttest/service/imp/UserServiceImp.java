@@ -115,7 +115,7 @@ public class UserServiceImp  implements UserService {
         List<User> userList=userPage.getContent();
         return userList;
     }
-
+    @Transactional
     @Override
     public String deleteUser(Integer userId) {
         User user = userRepository.findById(userId).orElse(null);
@@ -125,6 +125,7 @@ public class UserServiceImp  implements UserService {
             if(role.getRoleName().equals("管理員"))
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"不可刪除最高管理員");
         });
+        userRoleRepository.deleteAllRolesById(userId);//先刪除相關權限
         userRepository.deleteById(userId);
         redisTemplate.delete("User:Login:"+userId);
         return "刪除成功";

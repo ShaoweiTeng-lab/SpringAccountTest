@@ -17,4 +17,9 @@ public interface UserRoleRepository extends JpaRepository<UserRole,Integer> {
             "FROM `role` r " +
             "WHERE r.role_name = :roleName", nativeQuery = true)
     void insertUserRole(@Param("userId") Integer userId, @Param("roleName") String roleName);
+
+
+    @Modifying
+    @Query(value = "delete from user_role ur where ur.user_Id = ?1", nativeQuery = true)
+    void deleteAllRolesById(Integer userId);
 }
