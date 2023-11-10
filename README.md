@@ -64,7 +64,24 @@ java -jar backend.jar
 ### 測試方式:
  * Local測試網址: http://localhost:8080/doc.html#/home
  
-![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/5ca17a63-273c-4f6b-bff2-6b29f3d26703)
+![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/132072cf-956a-4996-bf05-265aa990af3e)
+
+## 功能展示:
+
+* 註冊會員 (新增功能) :
+  
+![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/0ebed0d9-03c3-4a1f-b9f8-f47d56cd4582)
+
+* 登入會員 拿到token :
+
+![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/eb29d7cc-fb67-49f7-bc13-e07210050728)
+
+
+* 查詢此帳戶資訊 (單筆查詢):
+  1. 在 header 中帶入 token
+     ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/1d4313b2-9721-4542-8368-e892a27574ca)
+  2. 取得此帳戶資訊
+     ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/0df8a664-3139-4411-948d-387c196bfe48)
 
 
 <!-- Markdown link & img dfn's -->
