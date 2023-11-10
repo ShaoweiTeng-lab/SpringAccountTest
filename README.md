@@ -70,7 +70,7 @@ java -jar backend.jar
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/84e86841-940a-4584-a3e6-9f1c2e28b17f)
 
 
-## 功能展示:
+## 功能展示(會員):
 
 * 註冊會員 (新增功能) :
   
@@ -86,8 +86,18 @@ java -jar backend.jar
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/1d4313b2-9721-4542-8368-e892a27574ca)
   2. 取得此帳戶資訊
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/0df8a664-3139-4411-948d-387c196bfe48)
+* 會員修改密碼 (修改功能):
+  1. 在 header 中帶入 token
+     ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/4d70d448-17d6-4432-bb4b-3c03fb88688f)
+  2. 在RequestBody 設定密碼
+     ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/c9743916-3605-4cc6-a13b-3b38277f95d0)
+  3. 再次登入 即可以新密碼登入
+     ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/08424978-368b-4b29-a4b6-00486c0738c7)
 
 
+
+
+## 功能展示(管理員):
 <!-- Markdown link & img dfn's -->
 [npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/datadog-metrics
