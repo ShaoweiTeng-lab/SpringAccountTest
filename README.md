@@ -109,7 +109,7 @@ java -jar backend.jar
 
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/78a0dd1e-19e8-4822-9d2b-310aaefb56e1)
  
-      
+     ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/a711a636-b91e-4ea9-a516-6c3626333908)
 
 
 * 管理員修改帳戶狀態(修改功能):  
@@ -124,7 +124,7 @@ java -jar backend.jar
     2. 刪除會員
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/30f7a493-95c0-4322-bd5d-eb7691a8b478)
 
-     ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/a711a636-b91e-4ea9-a516-6c3626333908)
+     
 
 
 <!-- Markdown link & img dfn's -->
