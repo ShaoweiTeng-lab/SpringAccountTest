@@ -31,11 +31,14 @@
 
 
 
-   1.Import sql :請至 Resources/sql 找到sql 並使用 mysql 匯入
+   1.Import sql :請至 src/main/resources/sql  找到spring_account_test_sql.sql  並使用 mysql work branch 匯入
+
+![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/4bf7ade7-31ba-476e-aeee-0fcf02845cd0)
 
 
+  2.確保Redis 有開啟
 
-
+  3.
 
 ## MySql 連接:
 ```sh
