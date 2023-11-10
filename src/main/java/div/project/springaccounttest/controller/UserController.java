@@ -2,16 +2,14 @@ package div.project.springaccounttest.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import div.project.springaccounttest.dto.request.*;
+import div.project.springaccounttest.dto.response.ResponsePage;
 import div.project.springaccounttest.dto.response.UserProfile;
 import div.project.springaccounttest.service.UserService;
 import div.project.springaccounttest.utils.ResultResponse;
 import java.util.*;
 
 import div.project.springaccounttest.vo.User;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -61,7 +59,7 @@ public class UserController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "Access Token", required = true, dataType = "string", paramType = "header")
     })
-    public  ResultResponse<List<User>> getUser(@ModelAttribute UserQueryRequest userQueryRequest)  {
+    public  ResultResponse<ResponsePage<List<User>>> getUser(@ModelAttribute UserQueryRequest userQueryRequest)  {
         ResultResponse rs =new ResultResponse();
         rs.setMessage(userService.getUser(userQueryRequest));
         return  rs;
@@ -75,7 +73,7 @@ public class UserController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "Access Token", required = true, dataType = "string", paramType = "header")
     })
-    public  ResultResponse<String> adjustPassword(@RequestAttribute("userId")Integer userId,@RequestBody @Valid AdjustPasswordRequest adjustProfileRequest )  {
+    public  ResultResponse<String> adjustPassword(@ApiParam(hidden = true) @RequestAttribute("userId")Integer userId, @RequestBody @Valid AdjustPasswordRequest adjustProfileRequest )  {
         ResultResponse rs =new ResultResponse();
         rs.setMessage(userService.adjustPassword(userId,adjustProfileRequest));
         return  rs;

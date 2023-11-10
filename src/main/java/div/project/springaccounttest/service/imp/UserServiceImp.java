@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import div.project.springaccounttest.dao.UserRepository;
 import div.project.springaccounttest.dao.UserRoleRepository;
 import div.project.springaccounttest.dto.request.*;
+import div.project.springaccounttest.dto.response.ResponsePage;
 import div.project.springaccounttest.dto.response.UserProfile;
 import div.project.springaccounttest.service.UserService;
 import div.project.springaccounttest.service.imp.auth.UserDetailsImp;
@@ -95,7 +96,7 @@ public class UserServiceImp  implements UserService {
     }
 
     @Override
-    public List<User> getUser(UserQueryRequest userQueryRequest) {
+    public ResponsePage<List<User>> getUser(UserQueryRequest userQueryRequest) {
         Sort sort =null ;//設定排序方式
         switch (userQueryRequest.getSort()){
             case asc:
@@ -109,8 +110,13 @@ public class UserServiceImp  implements UserService {
         Pageable pageable = PageRequest.of(userQueryRequest.getPage()-1, userQueryRequest.getSize(), sort);
         //執行查詢返回 Page
         Page userPage = userRepository.findUser(userQueryRequest.getSearch(), pageable);
+        ResponsePage<List<User>> rs =new ResponsePage<>();
+        rs.setPage(userPage.getPageable().getPageNumber()+1);//pageable預設從第0頁開始
+        rs.setSize(pageable.getPageSize());
+        rs.setTotal((int)userPage.getTotalElements());
         List<User> userList=userPage.getContent();
-        return userList;
+        rs.setBody(userList);
+        return rs;
     }
     @Transactional
     @Override
