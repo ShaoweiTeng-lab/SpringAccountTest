@@ -62,7 +62,7 @@ java -jar backend.jar
 
 
 ### 測試方式:
- * <h2> Local測試網址: http://localhost:8080/doc.html#/home </h2>
+ * Local測試網址: http://localhost:8080/doc.html#/home
  
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/132072cf-956a-4996-bf05-265aa990af3e)
 
@@ -83,17 +83,22 @@ java -jar backend.jar
 
 * <h2> 查詢此帳戶資訊 (單筆查詢):</h2>
 
-  1. 在 header 中帶入 token
+  1. <h3> 在 header 中帶入 token </h3> 
+  
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/1d4313b2-9721-4542-8368-e892a27574ca)
-  2. 取得此帳戶資訊
+  2. <h3> 取得此帳戶資訊</h3>
+  
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/0df8a664-3139-4411-948d-387c196bfe48)
 * <h2>會員修改密碼 (修改功能):</h2>
 
-  1. 在 header 中帶入 token
+  1. <h3> 在 header 中帶入 token </h3> 
+  
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/4d70d448-17d6-4432-bb4b-3c03fb88688f)
-  2. 在RequestBody 設定密碼
+  2. <h3> 在RequestBody 設定密碼 </h3>
+  
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/c9743916-3605-4cc6-a13b-3b38277f95d0)
-  3. 再次登入 即可以新密碼登入
+  3. <h3> 再次登入 即可以新密碼登入</h3>
+  
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/08424978-368b-4b29-a4b6-00486c0738c7)
 
 
@@ -104,10 +109,10 @@ java -jar backend.jar
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/6c29616e-e7b8-4682-9d2c-53baafb14458)
 
 * 管理員查詢會員(關鍵字查詢、分頁查詢) :
-   1. <h2> 在 header 中帶入 token</h2>
+   1. <h3> 在 header 中帶入 token</h3>
       
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/84ef5806-db3e-4997-9776-37e8f507c5b3)
-   2. <h2> 取得會員資訊</h2>
+   2. <h3> 取得會員資訊</h3>
       * 可帶參數 : search (帳戶名稱，使用模糊查詢) 、page(頁數)、 order(排序類別) 、 size(回傳筆數) 、sort (降冪、 升冪 )
 
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/78a0dd1e-19e8-4822-9d2b-310aaefb56e1)
@@ -116,35 +121,36 @@ java -jar backend.jar
 
 
 * 管理員修改帳戶狀態(修改功能):  
-  1. <h2>在 header 中帶入 token</h2>
+  1.<h3>在 header 中帶入 token</h3>
   
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/95334ba2-3927-4a37-9db8-5e4bdf6d4e3a)
      
-  2. <h2>設定狀態為停權/開啟</h2>
+  2.<h3>設定狀態為停權/開啟</h3>
   
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/8cda36b3-076a-4d5f-a639-974446a3f438)
      
-* <h2>管理員刪除帳戶(刪除功能):</h2>
+* <h3> 管理員刪除帳戶(刪除功能):</h3>
 
-    1. 在 header 中帶入 token
+    1. <h3>在 header 中帶入 token</h3>
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/ababb7b9-568a-474f-8342-8b381dad3c7c)
-    2. 刪除會員
+  
+    2.<h3>刪除會員</h3>
      ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/30f7a493-95c0-4322-bd5d-eb7691a8b478)
 
      
 ## 異常處理
-* <h2>密碼錯誤</h2>
+* <h3>密碼錯誤</h3>
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/4eaa81d4-5d50-4951-bff2-53122a205284)
 
-* <h2>無此帳戶</h2>
+*  <h3>無此帳戶</h3>
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/d0d8ffe1-ee50-4c1a-a286-759da64eaefe)
-* <h2>帳戶停權後 登入</h2>
+*  <h3>帳戶停權後 登入</h3>
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/548f77ab-18db-4855-b48e-25c364e5b72c)
-* <h2>會員使用token 呼叫管理員專用 api</h2>
+*  <h3>會員使用token 呼叫管理員專用 api</h3>
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/f70b37cd-7306-4f6e-a47d-9b6573191000)
-* <h2>管理員刪除管理員</h2>
+*  <h3>管理員刪除管理員</h3>
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/d497a7aa-3d35-42a8-bc5d-eac2173a5e33)
-* <h2>更改管理員帳號狀態</h2>
+*  <h3>更改管理員帳號狀態</h3>
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/807e39d6-8c83-451e-ac82-75ba6d8a074f)
 
 
