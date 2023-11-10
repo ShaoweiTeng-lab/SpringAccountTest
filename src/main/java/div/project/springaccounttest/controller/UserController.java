@@ -2,6 +2,7 @@ package div.project.springaccounttest.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import div.project.springaccounttest.dto.request.*;
+import div.project.springaccounttest.dto.response.LoginResponse;
 import div.project.springaccounttest.dto.response.ResponsePage;
 import div.project.springaccounttest.dto.response.UserProfile;
 import div.project.springaccounttest.service.UserService;
@@ -33,7 +34,7 @@ public class UserController {
     }
     @PostMapping("/login")
     @ApiOperation("會員登入")
-    public  ResultResponse<String> userLogin(@RequestBody @Valid LoginRequest loginRequest) throws JsonProcessingException {
+    public  ResultResponse<LoginResponse> userLogin(@RequestBody @Valid LoginRequest loginRequest) throws JsonProcessingException {
         ResultResponse rs =new ResultResponse();
         rs.setMessage(userService.login(loginRequest));
         return  rs;
@@ -45,7 +46,7 @@ public class UserController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "Access Token", required = true, dataType = "string", paramType = "header")
     })
-    public  ResultResponse<UserProfile> getUserProfile(@RequestAttribute("userId")Integer userId)  {
+    public  ResultResponse<UserProfile> getUserProfile(@ApiParam(hidden = true) @RequestAttribute("userId")Integer userId)  {
         ResultResponse rs =new ResultResponse();
         rs.setMessage(userService.getUserProfile(userId));
         return  rs;

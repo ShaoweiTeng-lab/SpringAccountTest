@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import div.project.springaccounttest.dao.UserRepository;
 import div.project.springaccounttest.dao.UserRoleRepository;
 import div.project.springaccounttest.dto.request.*;
+import div.project.springaccounttest.dto.response.LoginResponse;
 import div.project.springaccounttest.dto.response.ResponsePage;
 import div.project.springaccounttest.dto.response.UserProfile;
 import div.project.springaccounttest.service.UserService;
@@ -65,7 +66,7 @@ public class UserServiceImp  implements UserService {
     }
 
     @Override
-    public String login(LoginRequest loginRequest) throws JsonProcessingException {
+    public LoginResponse login(LoginRequest loginRequest) throws JsonProcessingException {
         UsernamePasswordAuthenticationToken authenticationToken =new UsernamePasswordAuthenticationToken(loginRequest.getUserAccount(),loginRequest.getPassword());
         Authentication authentication= authenticationManager.authenticate(authenticationToken);
         if(Objects.isNull(authentication)) //返回空值代表認證失敗
@@ -78,7 +79,9 @@ public class UserServiceImp  implements UserService {
         userDetailJson=objectMapper.writeValueAsString(userDetailsImp);
         redisTemplate.opsForValue().set("User:Login:"+userDetailsImp.getUser().getUserId(),userDetailJson);
         String jwt= userJwtUtil.createJwt(userId);
-        return  jwt;
+        LoginResponse loginResponse= new LoginResponse();
+        loginResponse.setToken(jwt);
+        return  loginResponse;
     }
 
     @Override

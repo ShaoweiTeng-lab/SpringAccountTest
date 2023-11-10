@@ -2,6 +2,7 @@ package div.project.springaccounttest.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import div.project.springaccounttest.dto.request.*;
+import div.project.springaccounttest.dto.response.LoginResponse;
 import div.project.springaccounttest.dto.response.ResponsePage;
 import div.project.springaccounttest.dto.response.UserProfile;
 import div.project.springaccounttest.vo.User;
@@ -11,7 +12,7 @@ import javax.validation.Valid;
 import java.util.*;
 public interface UserService {
     String signUp(SignUpRequest signUpRequest);
-    String login(LoginRequest loginRequest) throws JsonProcessingException;
+    LoginResponse login(LoginRequest loginRequest) throws JsonProcessingException;
 
     UserProfile getUserProfile(Integer userId);
     ResponsePage<List<User>> getUser(UserQueryRequest userQueryRequest);
