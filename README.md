@@ -41,14 +41,14 @@ password:無
 port:6379
 ```
 
-   1.Import sql :請至 src/main/resources/sql  找到spring_account_test_sql.sql  並使用 mysql work branch 匯入
+ <h1>  1. Import sql :請至 src/main/resources/sql  找到spring_account_test_sql.sql  並使用 mysql work branch 匯入 </h1>
 
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/4bf7ade7-31ba-476e-aeee-0fcf02845cd0)
 
 
-  2.確保Redis 有開啟
+<h1>  2.  確保Redis 有開啟 </h1>
 
-  3.進入build_jar 資料夾 ，打開命令提示字元 並輸入:
+<h1>   3. 進入build_jar 資料夾 ，打開命令提示字元 並輸入: </h1>
 
   ```sh
 java -jar backend.jar
