@@ -1,6 +1,7 @@
 package div.project.springaccounttest.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import div.project.springaccounttest.dto.request.AdjustPasswordRequest;
 import div.project.springaccounttest.dto.request.LoginRequest;
 import div.project.springaccounttest.dto.request.SignUpRequest;
 import div.project.springaccounttest.dto.request.UserQueryRequest;
@@ -57,6 +58,7 @@ public class UserController {
     /**
      * 最高管理員才可查詢所有會員資訊
      * */
+    @ApiOperation("管理員查詢會員")
     @PreAuthorize("hasAnyAuthority('管理員')")
     @GetMapping()
     @ApiImplicitParams({
@@ -68,4 +70,33 @@ public class UserController {
         return  rs;
     }
 
+    /**
+     * 修改自身密碼
+     * */
+    @ApiOperation("修改自身密碼")
+    @PutMapping("/userProfile")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Access Token", required = true, dataType = "string", paramType = "header")
+    })
+    public  ResultResponse<String> adjustPassword(@RequestAttribute("userId")Integer userId,@RequestBody @Valid AdjustPasswordRequest adjustProfileRequest )  {
+        ResultResponse rs =new ResultResponse();
+        rs.setMessage(userService.adjustPassword(userId,adjustProfileRequest));
+        return  rs;
+    }
+
+
+    /**
+     * 最高管理員才可刪除會員
+     * */
+    @ApiOperation("管理員刪除會員")
+    @PreAuthorize("hasAnyAuthority('管理員')")
+    @DeleteMapping
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Access Token", required = true, dataType = "string", paramType = "header")
+    })
+    public  ResultResponse<String> deleteUser(@RequestParam  Integer userId ) {
+        ResultResponse rs =new ResultResponse();
+        rs.setMessage(userService.deleteUser(userId));
+        return  rs;
+    }
 }

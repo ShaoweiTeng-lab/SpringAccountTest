@@ -1,6 +1,7 @@
 package div.project.springaccounttest.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import div.project.springaccounttest.dto.request.AdjustPasswordRequest;
 import div.project.springaccounttest.dto.request.LoginRequest;
 import div.project.springaccounttest.dto.request.SignUpRequest;
 import div.project.springaccounttest.dto.request.UserQueryRequest;
@@ -13,4 +14,7 @@ public interface UserService {
 
     UserProfile getUserProfile(Integer userId);
     List<User>  getUser(UserQueryRequest userQueryRequest);
+
+    String deleteUser(Integer userId);
+    String adjustPassword(Integer userId,AdjustPasswordRequest adjustPasswordRequest);
 }

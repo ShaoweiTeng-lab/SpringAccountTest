@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import div.project.springaccounttest.dao.UserRepository;
 import div.project.springaccounttest.dao.UserRoleRepository;
+import div.project.springaccounttest.dto.request.AdjustPasswordRequest;
 import div.project.springaccounttest.dto.request.LoginRequest;
 import div.project.springaccounttest.dto.request.SignUpRequest;
 import div.project.springaccounttest.dto.request.UserQueryRequest;
@@ -113,5 +114,29 @@ public class UserServiceImp  implements UserService {
         Page userPage = userRepository.findUser(userQueryRequest.getSearch(), pageable);
         List<User> userList=userPage.getContent();
         return userList;
+    }
+
+    @Override
+    public String deleteUser(Integer userId) {
+        User user = userRepository.findById(userId).orElse(null);
+        if(user==null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"無此使用者");
+        user.getRoles().forEach(role->{
+            if(role.getRoleName().equals("管理員"))
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"不可刪除最高管理員");
+        });
+        userRepository.deleteById(userId);
+        redisTemplate.delete("User:Login:"+userId);
+        return "刪除成功";
+    }
+
+    @Override
+    public String adjustPassword(Integer userId, AdjustPasswordRequest adjustPasswordRequest) {
+        User user = userRepository.findById(userId).orElse(null);
+        if(user==null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"無此使用者");
+        user.setPassword(bCryptPasswordEncoder.encode(adjustPasswordRequest.getPassword()));
+        userRepository.save(user);
+        return "修改成功";
     }
 }
