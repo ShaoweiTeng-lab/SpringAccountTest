@@ -23,7 +23,7 @@
 ### * Spring boot Starter Security 2.7.13
 ### * mysql 8.0.33
 ### * Redis
-### * Swagger
+### * Swagger (knife4j)
 
 ## 安裝方式:
    * 若有Docker 可參考 Docker版(以下可省略):https://github.com/ShaoweiTeng-lab/SpringAccountTest-Docker
@@ -64,6 +64,7 @@ java -jar backend.jar
 ### 測試方式:
  * Local測試網址: http://localhost:8080/doc.html#/home
  
+![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/5ca17a63-273c-4f6b-bff2-6b29f3d26703)
 
 
 <!-- Markdown link & img dfn's -->
