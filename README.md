@@ -29,17 +29,6 @@
    * 若有Docker 可參考 Docker版(以下可省略):https://github.com/ShaoweiTeng-lab/SpringAccountTest-Docker
 
 
-
-
-   1.Import sql :請至 src/main/resources/sql  找到spring_account_test_sql.sql  並使用 mysql work branch 匯入
-
-![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/4bf7ade7-31ba-476e-aeee-0fcf02845cd0)
-
-
-  2.確保Redis 有開啟
-
-  3.
-
 ## MySql 連接:
 ```sh
 帳號:root
@@ -51,6 +40,23 @@ host:localhost
 password:無
 port:6379
 ```
+
+   1.Import sql :請至 src/main/resources/sql  找到spring_account_test_sql.sql  並使用 mysql work branch 匯入
+
+![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/4bf7ade7-31ba-476e-aeee-0fcf02845cd0)
+
+
+  2.確保Redis 有開啟
+
+  3.進入build_jar 資料夾 ，打開命令提示字元 並輸入:
+
+  ```sh
+java -jar backend.jar
+```
+  
+![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/0c6853c1-37ba-4637-8d7a-30395b8f53fb)
+
+
 
 
 
