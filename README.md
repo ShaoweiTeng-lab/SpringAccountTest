@@ -66,6 +66,10 @@ java -jar backend.jar
  
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/132072cf-956a-4996-bf05-265aa990af3e)
 
+### 資料庫預設資料 (帳號密碼相同，使用 bcryptPasswordEncoder 加密)
+![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/84e86841-940a-4584-a3e6-9f1c2e28b17f)
+
+
 ## 功能展示:
 
 * 註冊會員 (新增功能) :
