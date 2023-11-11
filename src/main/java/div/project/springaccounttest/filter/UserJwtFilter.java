@@ -32,7 +32,11 @@ public class UserJwtFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String requestURI = request.getRequestURI();
-
+//        //URL 路徑檢查
+        if (!requestURI.startsWith("/user")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
         String token = request.getHeader("Authorization");
         if (!StringUtils.hasText(token)) {
             //若無 token 依然可放行，因沒傳入 security context ，之後的filter會throw AuthenticationException
