@@ -46,6 +46,7 @@ public class UserJwtUtil {
         }
         catch (MalformedJwtException e) {
             log.info("MalformedJwtException");
+            System.err.println("JWT parsing error: " + e.getMessage());
         }
         catch (ExpiredJwtException e) {
             log.info("ExpiredJwtException");

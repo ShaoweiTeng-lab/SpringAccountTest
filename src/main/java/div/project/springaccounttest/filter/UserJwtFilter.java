@@ -8,6 +8,8 @@ import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -19,6 +21,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class UserJwtFilter extends OncePerRequestFilter {
@@ -26,8 +30,8 @@ public class UserJwtFilter extends OncePerRequestFilter {
     private UserJwtUtil userJwtUtil;
     @Autowired
     private ObjectMapper objectMapper;
-    @Autowired
-    private RedisTemplate<String, String> redisTemplate;
+//    @Autowired
+//    private RedisTemplate<String, String> redisTemplate;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -52,24 +56,20 @@ public class UserJwtFilter extends OncePerRequestFilter {
             return;
         }
 
-        //取得sub
-        userId = claims.getSubject();
-        //拿回 redis 儲存的 已經認證的principal
-        String userLoginJson = redisTemplate.opsForValue().get("User:Login:" + userId);
-        if (userLoginJson == null) {
-            //被最高管理員修改後 會須重新登入
-            filterChain.doFilter(request, response);
-            return;
+        //取得userID
+        userId = claims.get("userId").toString();
+
+        //解析權限
+        List<String> roleList=(ArrayList)claims.get("roles");
+
+        List<GrantedAuthority> authorities =new ArrayList<>();
+        for (String permission : roleList) {
+            SimpleGrantedAuthority simpleAuthority =new SimpleGrantedAuthority(permission);
+            authorities.add(simpleAuthority);
         }
-        UserDetailsImp userDetail = null;
-        userDetail = objectMapper.readValue(userLoginJson, UserDetailsImp.class);
-        if(userDetail.getUser().getStatus()==0){
-            //被停權
-            filterChain.doFilter(request,response);
-            return;
-        }
+
         //認證成功 傳入 SecurityContext  到當前SecurityContextHolder
-        UsernamePasswordAuthenticationToken managerAuthentication = new UsernamePasswordAuthenticationToken(userDetail, null, userDetail.getAuthorities());
+        UsernamePasswordAuthenticationToken managerAuthentication = new UsernamePasswordAuthenticationToken(userId, null, authorities);
         //傳入此次請求的安全上下文
         SecurityContextHolder.getContext().setAuthentication(managerAuthentication);
         //設定attribute ，讓controller 獲得
