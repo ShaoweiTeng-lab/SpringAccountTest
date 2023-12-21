@@ -2,11 +2,6 @@
 [![Build Status][travis-image]][travis-url]
 [![Downloads Stats][npm-downloads]][npm-url]
 
-## 專題說明:
-<H2>奧爾資訊 面試前測驗</H2>
-
-
-
 
 
 ## 實作項目:
@@ -14,7 +9,8 @@
 ### * 新增、修改、刪除、單筆查詢、列表查詢 
 ### * 額外功能 : 分頁查詢 
 ### * 角色 : 會員、管理員
-### * 角色驗證方式 : Json Web Token (JWT)
+### * 角色驗證方式 : Json Web Token (JWT) 
+### * Token 刷新方式：Refresh Token
 
 ## MySql Table:
 ![image](https://github.com/ShaoweiTeng-lab/SpringAccountTest/assets/50354880/984446bc-7888-4008-acb3-ceb2ea724618)
