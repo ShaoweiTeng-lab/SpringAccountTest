@@ -3,6 +3,7 @@ package div.project.springaccounttest.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import div.project.springaccounttest.dto.request.*;
 import div.project.springaccounttest.dto.response.LoginResponse;
+import div.project.springaccounttest.dto.response.RefreshAccessTokenResponse;
 import div.project.springaccounttest.dto.response.ResponsePage;
 import div.project.springaccounttest.dto.response.UserProfile;
 import div.project.springaccounttest.service.UserService;
@@ -39,7 +40,13 @@ public class UserController {
         rs.setMessage(userService.login(loginRequest));
         return  rs;
     }
-
+    @ApiOperation("重置accessToken")
+    @PostMapping("/refreshAccessToken")
+                public  ResultResponse<RefreshAccessTokenResponse> refreshAccessToken(@RequestBody @Valid RefreshAccessTokenRequest request){
+        ResultResponse rs =new ResultResponse();
+        rs.setMessage(userService.refreshAccessToken(request.getRefreshToken()));
+        return  rs;
+    }
 
     @ApiOperation("會員查自身資料")
     @GetMapping ("/userProfile")

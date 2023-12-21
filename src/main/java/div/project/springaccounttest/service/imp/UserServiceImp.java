@@ -7,11 +7,13 @@ import div.project.springaccounttest.dao.UserRepository;
 import div.project.springaccounttest.dao.UserRoleRepository;
 import div.project.springaccounttest.dto.request.*;
 import div.project.springaccounttest.dto.response.LoginResponse;
+import div.project.springaccounttest.dto.response.RefreshAccessTokenResponse;
 import div.project.springaccounttest.dto.response.ResponsePage;
 import div.project.springaccounttest.dto.response.UserProfile;
 import div.project.springaccounttest.service.UserService;
 import div.project.springaccounttest.service.imp.auth.UserDetailsImp;
 import div.project.springaccounttest.utils.UserJwtUtil;
+import div.project.springaccounttest.utils.UtilsTool;
 import div.project.springaccounttest.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,6 +33,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class UserServiceImp  implements UserService {
@@ -77,12 +80,24 @@ public class UserServiceImp  implements UserService {
         String userId =String.valueOf( userDetailsImp.getUser().getUserId());
         String userDetailJson=null;
         userDetailJson=objectMapper.writeValueAsString(userDetailsImp);
-        redisTemplate.opsForValue().set("User:Login:"+userDetailsImp.getUser().getUserId(),userDetailJson);
-        String jwt= userJwtUtil.createJwt(userId);
+        //redisTemplate.opsForValue().set("User:Login:"+userDetailsImp.getUser().getUserId(),userDetailJson);
+        Map<String,Object> map = new HashMap<>();
+        map.put("userId",userId);
+        List<String> roles=userRepository.findUserRolesById(Integer.parseInt(userId));
+        map.put("roles",roles);
+        String jwt= userJwtUtil.generateJwt(map);
         LoginResponse loginResponse= new LoginResponse();
-        loginResponse.setToken(jwt);
+        loginResponse.setAccessToken(jwt);
+        String refreshToken= UtilsTool.generateUUID();
+        loginResponse.setRefreshToken(refreshToken);
+
+        //存入 redis並設置30 天
+        redisTemplate.opsForValue().set("refreshToken:"+refreshToken,userId);
+        redisTemplate.expire("refreshToken:"+refreshToken,30, TimeUnit.DAYS);
         return  loginResponse;
     }
+
+
 
     @Override
     public UserProfile getUserProfile(Integer userId) {
@@ -160,5 +175,21 @@ public class UserServiceImp  implements UserService {
         userRepository.save(user);
         redisTemplate.delete("User:Login:"+user.getUserId());//帳號被修改後須重新登入
         return "修改成功";
+    }
+
+    @Override
+    public RefreshAccessTokenResponse refreshAccessToken(String refreshToken) {
+
+        String userId= redisTemplate.opsForValue().get("refreshToken:"+refreshToken);
+        if(userId==null)
+            throw  new ResponseStatusException(HttpStatus.UNAUTHORIZED,"無法取得AccessToken");
+        Map<String,Object> map = new HashMap<>();
+        map.put("userId",userId);
+        List<String> roles=userRepository.findUserRolesById(Integer.parseInt(userId));
+        map.put("roles",roles);
+        String jwt= userJwtUtil.generateJwt(map);
+        RefreshAccessTokenResponse response =new RefreshAccessTokenResponse();
+        response.setAccessToken(jwt);
+        return response;
     }
 }
