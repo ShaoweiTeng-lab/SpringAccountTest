@@ -25,6 +25,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -81,7 +83,8 @@ public class UserServiceImp  implements UserService {
 
         Map<String,Object> map = new HashMap<>();
         map.put("userId",userId);
-        List<String> roles=userRepository.findUserRolesById(Integer.parseInt(userId));
+        //獲得權限列表
+        Set<String> roles = AuthorityUtils.authorityListToSet(userDetailsImp.getAuthorities());
         map.put("roles",roles);
         String jwt= userJwtUtil.generateJwt(map);
         LoginResponse loginResponse= new LoginResponse();
