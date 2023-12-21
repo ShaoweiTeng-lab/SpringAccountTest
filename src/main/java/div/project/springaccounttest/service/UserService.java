@@ -3,6 +3,7 @@ package div.project.springaccounttest.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import div.project.springaccounttest.dto.request.*;
 import div.project.springaccounttest.dto.response.LoginResponse;
+import div.project.springaccounttest.dto.response.RefreshAccessTokenResponse;
 import div.project.springaccounttest.dto.response.ResponsePage;
 import div.project.springaccounttest.dto.response.UserProfile;
 import div.project.springaccounttest.vo.User;
@@ -20,4 +21,6 @@ public interface UserService {
     String deleteUser(Integer userId);
     String adjustPassword(Integer userId,AdjustPasswordRequest adjustPasswordRequest);
     String  adjustUserStatus(AdjustUserStatusRequest adjustProfileRequest);
+
+    RefreshAccessTokenResponse refreshAccessToken(String refreshToken);
 }

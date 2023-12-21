@@ -47,6 +47,7 @@ public class UserJwtFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
+
         //取得sub
         userId = claims.getSubject();
         //拿回 redis 儲存的 已經認證的principal

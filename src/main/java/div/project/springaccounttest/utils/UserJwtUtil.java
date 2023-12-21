@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Component
 public class UserJwtUtil {
-    private static final long EXPIRATION_TIME = TimeUnit.DAYS.toMillis(5);
+    private static final long EXPIRATION_TIME = TimeUnit.MINUTES.toMillis(30);
     /**
      * JWT SECRET KEY
      */
@@ -70,6 +70,14 @@ public class UserJwtUtil {
     public String createJwt(String sub){
         return Jwts.builder()
                 .setSubject(sub)
+                .setExpiration( new Date( Instant.now().toEpochMilli() + EXPIRATION_TIME  ) )
+                .signWith(SignatureAlgorithm.HS256, secret )
+                .compact();
+    }
+
+    public  String generateJwt(Map<String, Object> claims){
+        return  Jwts.builder()
+                .setClaims(claims)
                 .setExpiration( new Date( Instant.now().toEpochMilli() + EXPIRATION_TIME  ) )
                 .signWith(SignatureAlgorithm.HS256, secret )
                 .compact();
