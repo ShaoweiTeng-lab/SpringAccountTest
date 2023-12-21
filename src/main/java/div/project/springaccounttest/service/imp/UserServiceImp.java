@@ -78,9 +78,7 @@ public class UserServiceImp  implements UserService {
         if(userDetailsImp.getUser().getStatus()==0)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"您已被停權");
         String userId =String.valueOf( userDetailsImp.getUser().getUserId());
-        String userDetailJson=null;
-        userDetailJson=objectMapper.writeValueAsString(userDetailsImp);
-        //redisTemplate.opsForValue().set("User:Login:"+userDetailsImp.getUser().getUserId(),userDetailJson);
+
         Map<String,Object> map = new HashMap<>();
         map.put("userId",userId);
         List<String> roles=userRepository.findUserRolesById(Integer.parseInt(userId));
@@ -88,6 +86,7 @@ public class UserServiceImp  implements UserService {
         String jwt= userJwtUtil.generateJwt(map);
         LoginResponse loginResponse= new LoginResponse();
         loginResponse.setAccessToken(jwt);
+        //生成refresh token
         String refreshToken= UtilsTool.generateUUID();
         loginResponse.setRefreshToken(refreshToken);
 
